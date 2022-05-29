@@ -164,6 +164,7 @@ function applyPromotionsCart() {
   /*  Convirtiendo FOR loop a FOR-OF  */
 
   for (let item of cart) {
+    item.subTotal = (item.price * item.quantity).toFixed(2);
     if (item.quantity >= 3 && item.id === 1) {
       let newPrice = 10;
       item.subTotalWithDiscount = newPrice * item.quantity;
@@ -235,9 +236,12 @@ function addToCart(id) {
         
       } else {
         cart.push(item);
-        cart[cart.length - 1].quantity = 1;
+        item.quantity = 1;
       }
       console.log(cart.indexOf(item) > -1)
+      console.log(cart.length)
+      console.log(cart)
+
       applyPromotionsCart();
       calculateTotal();
     }
